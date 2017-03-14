@@ -1,8 +1,8 @@
 var Temperature = require('./../js/temperature.js').tempModule;
 
 
-function showTemp(temperature) {
-  console.log(temperature);
+function showTemp(temperatureF, temperatureK, cityName) {
+  $('#temperature-display').text("It is currently " + temperatureF + " F in " + cityName + ". That's " + temperatureK + " Kelvin, if you're curious.");
 };
 
 $(document).ready(function() {
