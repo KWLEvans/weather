@@ -6,8 +6,8 @@ function displayHumidity(city, data) {
   $("#weather-display").text("The humidity in " + city + " is " + data + ".");
 }
 
-function showOzone(response) {
-  console.log(response);
+function showOzone(city, response) {
+  $("#ozone-display").text("The ozone layer above " + city + " is " + response + " of normal."); 
 }
 
 $(function() {

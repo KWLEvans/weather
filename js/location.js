@@ -5,13 +5,13 @@ function Location() {
 
 }
 
-Location.prototype.getLatLong = function(address, callback) {
-  var url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=" + apiKey;
+Location.prototype.getLatLong = function(city, callback) {
+  var url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + city + "&key=" + apiKey;
   $.get(url).then(function(response) {
-    var lat = response.results[0].geometry.location.lat;
-    var long = response.results[0].geometry.location.lng;
+    var lat = response.results[0].geometry.location.lat.toFixed(1);
+    var long = response.results[0].geometry.location.lng.toFixed(1);
     var weather = new Weather();
-    weather.ozoneHole(lat, long, callback);
+    weather.ozoneHole(city, lat, long, callback);
   });
 }
 

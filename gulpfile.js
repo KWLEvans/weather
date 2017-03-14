@@ -18,6 +18,8 @@ var lib = require('bower-files')({
   }
 });
 var browserSync = require('browser-sync').create();
+var sass = require('gulp-sass');
+var source = require('gulp-sourcemaps');
 
 var buildProduction = utilities.env.production;
 
@@ -97,4 +99,12 @@ gulp.task('bowerBuild', ['bower'], function() {
 
 gulp.task('htmlBuild', function() {
   browserSync.reload();
+});
+
+gulp.task('cssBuild', function() {
+  return gulp.src(['scss/.scss'])
+    .pipe(sourcemaps.init())
+    .pipe(sass())
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('./build/css'));
 });

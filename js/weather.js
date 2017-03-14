@@ -13,11 +13,13 @@ Weather.prototype.humidity = function(cityName, callback) {
   });
 };
 
-Weather.prototype.ozoneHole = function(lat, long, callback) {
-  var date = moment();
-  url = "http://api.openweathermap.org/pollution/v1/o3/" + lat + "," + long + "/" + date.toISOString() + ".json?appid=" + apiKey;
+Weather.prototype.ozoneHole = function(city, lat, long, callback) {
+  url = "http://api.openweathermap.org/pollution/v1/o3/" + lat + "," + long + "/current.json?appid=" + apiKey;
   $.get(url).then(function(response) {
-    callback(response);
+    var ozone = response.data;
+    ozone = (300/ozone * 100).toFixed(2);
+    ozone = ozone.toString() + "%";
+    callback(city, ozone);
   });
 }
 
