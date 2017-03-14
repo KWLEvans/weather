@@ -11,10 +11,10 @@ Temperature.prototype.convertToF = function(temperature) {
 
 Temperature.prototype.getTemp = function(cityName, callback) {
   var url = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&APPID=" + apiKey;
-  var temp = this;
+  var that = this;
   $.get(url).then(function(response) {
     var temperatureK = response.main.temp;
-    var temperatureF = temp.convertToF(response.main.temp);
+    var temperatureF = that.convertToF(response.main.temp);
     callback(temperatureF, temperatureK, cityName)
   });
 };
